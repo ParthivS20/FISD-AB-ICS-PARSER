@@ -32,7 +32,7 @@
             openCanvas(json[y][x], json.openInNewTab);
         }
     }
-
+    
     function openCanvas(url, newtab) {
         if (newtab) {
             window.open(url, "_blank");
