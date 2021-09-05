@@ -1,3 +1,5 @@
+const newTab = true;
+
 (function() {
     var url = "https://FISD-AB-ICS-PARSER.parthivs20.repl.co/";
     var xhr = new XMLHttpRequest();
