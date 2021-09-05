@@ -34,7 +34,7 @@
     }
 
     function openCanvas(url, newtab) {
-        if (newTab) {
+        if (newtab) {
             window.open(url, "_blank");
         }
         else {
