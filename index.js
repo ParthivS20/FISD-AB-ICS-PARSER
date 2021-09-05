@@ -5,15 +5,29 @@ const schedule = require('node-schedule');
 
 var events;
 var lastCheckedICS = "";
+var newtab = true;
 
 http.createServer(function(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "POST, GET");
     res.setHeader("Access-Control-Max-Age", 2592000);
 
-    res.writeHead(200, { "Content-Type": "application/json" });
-
-    res.write(JSON.stringify(createJSON()));
+    switch (req.url.toLowerCase()) {
+        case "/settrue":
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            newtab = true;
+            res.write("true");
+            break;
+        case "/setfalse":
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            res.write("false");
+            newtab = false;
+            break;
+        default:
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.write(JSON.stringify(createJSON()));
+            break;
+    }
     res.end();
 }).listen(8080);
 
@@ -37,6 +51,7 @@ function createJSON() {
     json.day = {};
     json.day.day = getDay();
     json.day.lastChecked = lastCheckedICS + (lastCheckedICS != "" ? " CT" : "");
+    json.openInNewTab = newtab;
 
     return json;
 }

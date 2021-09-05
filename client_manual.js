@@ -1,5 +1,3 @@
-const newTab = true;
-
 (function() {
     var url = "https://FISD-AB-ICS-PARSER.parthivs20.repl.co/";
     var xhr = new XMLHttpRequest();
@@ -31,11 +29,11 @@ const newTab = true;
             var x = input[0];
             var y = input[1].toUpperCase();
 
-            openCanvas(json[y][x]);
+            openCanvas(json[y][x], json.openInNewTab);
         }
     }
 
-    function openCanvas(url) {
+    function openCanvas(url, newtab) {
         if (newTab) {
             window.open(url, "_blank");
         }
