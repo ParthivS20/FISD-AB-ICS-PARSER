@@ -29,7 +29,16 @@
             var x = input[0];
             var y = input[1].toUpperCase();
 
-            window.location.href = json[y][x];
+            openCanvas(json[y][x]);
+        }
+    }
+
+    function openCanvas(url) {
+        if (newTab) {
+            window.open(url, "_blank");
+        }
+        else {
+            window.location.href = url;
         }
     }
 })();

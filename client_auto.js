@@ -1,3 +1,5 @@
+const newTab = true;
+
 (function() {
     var url = "https://FISD-AB-ICS-PARSER.parthivs20.repl.co/";
     var xhr = new XMLHttpRequest();
@@ -22,16 +24,16 @@
 
         if (json.day.day == "A") {
             if (currentMin >= (9 * 60 + 0) && currentMin <= (10 * 60 + 30)) {
-                window.location.href = json["A"]["1"];
+                openCanvas(json["A"]["1"]);
             }
             else if (currentMin >= (10 * 60 + 35) && currentMin <= (12 * 60 + 10)) {
-                window.location.href = json["A"]["2"];
+                openCanvas(json["A"]["2"]);
             }
             else if (currentMin >= (13 * 60 + 0) && currentMin <= (14 * 60 + 30)) {
-                window.location.href = json["A"]["3"];
+                openCanvas(json["A"]["3"]);
             }
             else if (currentMin >= (15 * 60 + 5) && currentMin <= (16 * 60 + 35)) {
-                window.location.href = json["A"]["4"];
+                openCanvas(json["A"]["4"]);
             }
             else {
                 manualRedirect(json);
@@ -39,16 +41,16 @@
         }
         else if (json.day.day == "B") {
             if (currentMin >= (9 * 60 + 0) && currentMin <= (10 * 60 + 30)) {
-                window.location.href = json["B"]["1"];
+                openCanvas(json["B"]["1"]);
             }
             else if (currentMin >= (10 * 60 + 35) && currentMin <= (12 * 60 + 10)) {
-                window.location.href = json["B"]["2"];
+                openCanvas(json["B"]["2"]);
             }
             else if (currentMin >= (12 * 60 + 50) && currentMin <= (14 * 60 + 50)) {
-                window.location.href = json["B"]["3"];
+                openCanvas(json["B"]["3"]);
             }
             else if (currentMin >= (14 * 60 + 55) && currentMin <= (16 * 60 + 25)) {
-                location.href = json["B"]["4"];
+                openCanvas(json["B"]["4"]);
             }
             else {
                 manualRedirect(json);
@@ -72,7 +74,16 @@
             var x = input[0];
             var y = input[1].toUpperCase();
 
-            window.location.href = json[y][x];
+            openCanvas(json[y][x]);
+        }
+    }
+
+    function openCanvas(url) {
+        if (newTab) {
+            window.open(url, "_blank");
+        }
+        else {
+            window.location.href = url;
         }
     }
 })();
