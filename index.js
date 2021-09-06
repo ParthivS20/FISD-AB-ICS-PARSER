@@ -31,7 +31,7 @@ http.createServer(function(req, res) {
     res.end();
 }).listen(8080);
 
-getICS();
+//getICS();
 var getICSSchedule = schedule.scheduleJob('* * */24 * * *', function() {
     getICS();
 });
@@ -62,9 +62,7 @@ function getDay() {
     for (const event of Object.values(events)) {
         var eDate = new Date(event.start);
         if (
-            eDate.getMonth() === today.getMonth() &&
-            eDate.getDay() === today.getDay() &&
-            eDate.getFullYear() === today.getFullYear() &&
+            eDate.toDateString() == today.toDateString() &&
             (event.summary == 'A DAY' || event.summary == 'B DAY')
         ) {
             return event.summary[0];
