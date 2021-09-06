@@ -1,11 +1,13 @@
-if (document.visibilityState === 'visible') {
+var done = false;
+if (document.visibilityState === 'visible' && !done) {
     goToClass();
+    done = true;
 }
 else {
     document.addEventListener("visibilitychange", function() {
-        if (document.visibilityState === 'visible') {
+        if (document.visibilityState === 'visible'  && !done) {
             goToClass();
-            break;
+            done = true;
         }
     });
 }
@@ -45,7 +47,7 @@ function goToClass() {
             openCanvas(json[y][x], json.openInNewTab);
         }
         else {
-            if (!(window.history.length > 1)) {
+            if (window.history.length == 1) {
                 window.close();
             }
             else {
