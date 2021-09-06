@@ -25,13 +25,28 @@ http.createServer(function(req, res) {
             break;
         case "/auto":
             res.writeHead(200, { "Content-Type": "text/html" });
-            var data = fs.readFileSync('auto.html', 'utf8');
-            res.write(data);
+            var page = fs.readFileSync('auto.html', 'utf8');
+            res.write(page);
+            break;
+        case "/autojs":
+            res.writeHead(200, { "Content-Type": "text/javascript" });
+            var page = fs.readFileSync('auto.js', 'utf8');
+            res.write(page);
             break;
         case "/manual":
             res.writeHead(200, { "Content-Type": "text/html" });
-            var data = fs.readFileSync('manual.html', 'utf8');
-            res.write(data);
+            var page = fs.readFileSync('manual.html', 'utf8');
+            res.write(page);
+            break;
+        case "/manualjs":
+            res.writeHead(200, { "Content-Type": "text/javascript" });
+            var page = fs.readFileSync('manual.js', 'utf8');
+            res.write(page);
+            break;
+        case "/test":
+            res.writeHead(200, { "Content-Type": "text/html" });
+            var page = fs.readFileSync('test.html', 'utf8');
+            res.write(page);
             break;
         default:
             res.writeHead(200, { "Content-Type": "application/json" });
