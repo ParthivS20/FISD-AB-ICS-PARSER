@@ -1,1 +1,0 @@
-fetch("https://raw.githubusercontent.com/ParthivS20/FISD-AB-ICS-PARSER/master/client_bookmark_manual.js").then((res) => res.text().then((t) => eval(t)))

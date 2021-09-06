@@ -1,4 +1,6 @@
-(function() {
+<html>
+<script type="text/javascript">
+	(function() {
     var url = "https://FISD-AB-ICS-PARSER.parthivs20.repl.co/";
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
@@ -36,6 +38,7 @@
     function openCanvas(url, newtab) {
         if (newtab) {
             window.open(url, "_blank");
+            window.history.back();
         }
         else {
             window.location.href = url;
@@ -43,3 +46,6 @@
     }
 })();
 
+</script>
+
+</html>

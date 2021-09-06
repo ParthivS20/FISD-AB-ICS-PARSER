@@ -23,15 +23,26 @@ http.createServer(function(req, res) {
             res.write("false");
             newtab = false;
             break;
+        case "/auto":
+            res.writeHead(200, { "Content-Type": "text/html" });
+            var data = fs.readFileSync('auto.html', 'utf8');
+            res.write(data);
+            break;
+        case "/manual":
+            res.writeHead(200, { "Content-Type": "text/html" });
+            var data = fs.readFileSync('manual.html', 'utf8');
+            res.write(data);
+            break;
         default:
             res.writeHead(200, { "Content-Type": "application/json" });
             res.write(JSON.stringify(createJSON()));
             break;
     }
+    
     res.end();
 }).listen(8080);
 
-//getICS();
+getICS();
 var getICSSchedule = schedule.scheduleJob('* * */24 * * *', function() {
     getICS();
 });
