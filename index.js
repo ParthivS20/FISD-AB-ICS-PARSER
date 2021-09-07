@@ -43,11 +43,6 @@ http.createServer(function(req, res) {
             var page = fs.readFileSync('manual.js', 'utf8');
             res.write(page);
             break;
-        case "/test":
-            res.writeHead(200, { "Content-Type": "text/html" });
-            var page = fs.readFileSync('test.html', 'utf8');
-            res.write(page);
-            break;
         default:
             res.writeHead(200, { "Content-Type": "application/json" });
             res.write(JSON.stringify(createJSON()));
