@@ -1,3 +1,17 @@
+var done = false;
+if (document.visibilityState === 'visible' && !done) {
+    goToClass();
+    done = true;
+}
+else {
+    document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === 'visible'  && !done) {
+            goToClass();
+            done = true;
+        }
+    });
+}
+
 function goToClass() {
     var url = "https://FISD-AB-ICS-PARSER.parthivs20.repl.co/";
     var xhr = new XMLHttpRequest();
@@ -17,42 +31,26 @@ function goToClass() {
     xhr.send();
 
     function manualRedirect(json) {
-        var done = false;
-        if (document.visibilityState === 'visible' && !done) {
-            prompt();
-            done = true;
+        var periods = ['1A', '2A', '3A', '4A', '1B', '2B', '3B', '4B'];
+        var input = '';
+
+        while (input.length != 2 || !periods.includes(input.toUpperCase())) {
+            input = window.prompt("What Class?");
+            if (input == null) break;
+        }
+
+        if (input) {
+            var x = input[0];
+            var y = input[1].toUpperCase();
+
+            openCanvas(json[y][x], json.openInNewTab);
         }
         else {
-            document.addEventListener("visibilitychange", function() {
-                if (document.visibilityState === 'visible' && !done) {
-                    prompt();
-                    done = true;
-                }
-            });
-        }
-
-        function prompt() {
-            var periods = ['1A', '2A', '3A', '4A', '1B', '2B', '3B', '4B'];
-            var input = '';
-
-            while (input.length != 2 || !periods.includes(input.toUpperCase())) {
-                input = window.prompt("What Class?");
-                if (input == null) break;
-            }
-
-            if (input) {
-                var x = input[0];
-                var y = input[1].toUpperCase();
-
-                openCanvas(json[y][x], json.openInNewTab);
+            if (window.history.length == 1) {
+                window.close();
             }
             else {
-                if (window.history.length == 1) {
-                    window.close();
-                }
-                else {
-                    window.history.back();
-                }
+                window.history.back();
             }
         }
     }
