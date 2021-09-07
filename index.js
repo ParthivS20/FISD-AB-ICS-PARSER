@@ -83,7 +83,7 @@ function getDay() {
     for (const event of Object.values(events)) {
         var eDate = new Date(event.start);
         if (
-            eDate.toDateString() == today.toLocaleDateString('en-us', { timeZone: "America/Chicago" }) &&
+            eDate.toDateString() === today.toDateString() &&
             (event.summary == 'A DAY' || event.summary == 'B DAY')
         ) {
             return event.summary[0];
