@@ -5,7 +5,7 @@ if (document.visibilityState === 'visible' && !done) {
 }
 else {
     document.addEventListener("visibilitychange", function() {
-        if (document.visibilityState === 'visible'  && !done) {
+        if (document.visibilityState === 'visible' && !done) {
             goToClass();
             done = true;
         }
@@ -32,6 +32,8 @@ function goToClass() {
 
     function autoRedirect(json) {
         today = new Date();
+        today = new Date(today.toLocaleString('en-us', { timezone: "America/Chicago" }));
+        
         var currentMin = today.getHours() * 60 + today.getMinutes();
 
         if (json.day.day == "A") {
