@@ -15,8 +15,8 @@ http.createServer(function(req, res) {
     switch (req.url.toLowerCase()) {
         case "/settrue":
             res.writeHead(200, { "Content-Type": "text/plain" });
-            newtab = true;
             res.write("true");
+            newtab = true;
             break;
         case "/setfalse":
             res.writeHead(200, { "Content-Type": "text/plain" });
