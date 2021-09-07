@@ -53,12 +53,12 @@ http.createServer(function(req, res) {
             res.write(JSON.stringify(createJSON()));
             break;
     }
-    
+
     res.end();
 }).listen(8080);
 
 getICS();
-var getICSSchedule = schedule.scheduleJob('* * */24 * * *', function() {
+var getICSSchedule = schedule.scheduleJob('* * */6 * * *', function() {
     getICS();
 });
 
@@ -88,7 +88,7 @@ function getDay() {
     for (const event of Object.values(events)) {
         var eDate = new Date(event.start);
         if (
-            eDate.toDateString() == today.toDateString() &&
+            eDate.toDateString() == today.toLocaleDateString('en-us', { timeZone: "America/Chicago" }) &&
             (event.summary == 'A DAY' || event.summary == 'B DAY')
         ) {
             return event.summary[0];
